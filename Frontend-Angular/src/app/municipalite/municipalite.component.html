@@ -1,0 +1,80 @@
+<div class="bg-light min-h-screen p-8">
+  <nav class="sidenav">
+    <img src="assets/image/logonabeul.jpg" width="50" alt="Logo" class="logo" />
+    <a href="/dashboard" class="nav-item" title="{{ 'dashboard' | translate }}" id="dashboardLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M3 3h8v8H3V3zm10 0h8v5h-8V3zM3 13h5v8H3v-8zm7 3h8v5h-8v-5z" />
+      </svg>
+      <span>{{ "dashboard" | translate }}</span>
+    </a>
+    <a href="/demandes" class="nav-item" title="{{ 'demandes' | translate }}" id="demandesLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8.828a2 2 0 00-.586-1.414l-5.828-5.828A2 2 0 0012.172 2H6zm6 1.414L17.586 9H14a2 2 0 01-2-2V3.414zM7 11h10a1 1 0 010 2H7a1 1 0 110-2zm0 4h7a1 1 0 010 2H7a1 1 0 010-2z" />
+      </svg>
+      <span>{{ "demandes" | translate }}</span>
+    </a>
+    <a href="/municipalites" class="nav-item" title="{{ 'municipalites' | translate }}" id="municipalitesLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 2a10 10 0 00-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0012 2zm0 2a8 8 0 018 8c0 4.418-3.582 8-8 8s-8-3.582-8-8a8 8 0 018-8zm-4 6v4h8v-4H8z" />
+      </svg>
+      <span>{{ 'municipalites' | translate }}</span>
+    </a>
+    <a href="/users" class="nav-item" title="{{ 'utilisateurs' | translate }}" id="usersLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 8c0-2.761 2.239-5 5-5h4c2.761 0 5 2.239 5 5a1 1 0 01-1 1H6a1 1 0 01-1-1z" />
+      </svg>
+      <span>{{ "utilisateurs" | translate }}</span>
+    </a>
+    <a href="/login" class="nav-item" title="{{ 'deconnexion' | translate }}" id="logoutLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M9 3a1 1 0 00-1 1v4a1 1 0 102 0V5h8v14h-8v-3a1 1 0 10-2 0v4a1 1 0 001 1h10a1 1 0 001-1V4a1 1 0 00-1-1H9zm2.707 6.707a1 1 010-1.414-1.414-1.414L7.586 11H16a1 1 0 100-2H7.586l2.707-2.707z" />
+      </svg>
+      <span class="dec">{{ "deconnexion" | translate }}</span>
+    </a>
+  </nav>
+  <div class="custom-header">
+    <div class="lang-switch">
+      <button class="btn btn-lang" (click)="switchLanguage('fr')">Français</button>
+      <button class="btn btn-lang" (click)="switchLanguage('ar')">عربية</button>
+    </div>
+  </div>
+  <div class="table-container">
+    <h1 class="titre">Municipalité</h1>
+    <!-- Add button: Hidden for admin users -->
+    <button *ngIf="isSuperAdmin" (click)="openAddMunicipaliteDialog()" class="btn btn-add mb-6">
+      {{ 'add_municipality' | translate }}
+    </button>
+    <table mat-table>
+      <thead>
+        <tr>
+          <th>{{ "nomMunicipalite" | translate }}</th>
+          <!-- Actions column: Hidden for admin users -->
+          <th *ngIf="isSuperAdmin">{{ "actions" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let municipalite of filteredMunicipalities">
+          <td>{{ municipalite.name_francais }}</td>
+          <!-- Modify and Delete buttons: Hidden for admin users -->
+          <td *ngIf="isSuperAdmin">
+            <button mat-icon-button (click)="openModifyMunicipaliteDialog(municipalite)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                <path d="m15 5 3 3" />
+              </svg>
+            </button>
+            <button mat-icon-button style="color: red" color="warn" (click)="handleDeleteMunicipality(municipalite)">
+              <mat-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="red">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                </svg>
+              </mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

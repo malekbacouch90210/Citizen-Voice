@@ -1,0 +1,267 @@
+<div class="bg-light min-h-screen p-8">
+  <nav class="sidenav">
+    <img src="assets/image/logonabeul.jpg" width="50" alt="Logo" class="logo" />
+    <a href="/dashboard" class="nav-item" title="{{ 'dashboard' | translate }}" id="dashboardLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M3 3h8v8H3V3zm10 0h8v5h-8V3zM3 13h5v8H3v-8zm7 3h8v5h-8v-5z" />
+      </svg>
+      <span>{{ "dashboard" | translate }}</span>
+    </a>
+    <a href="/demandes" class="nav-item" title="{{ 'demandes' | translate }}" id="demandesLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8.828a2 2 0 00-.586-1.414l-5.828-5.828A2 2 0 0012.172 2H6zm6 1.414L17.586 9H14a2 2 0 01-2-2V3.414zM7 11h10a1 1 0 010 2H7a1 1 0 110-2zm0 4h7a1 1 0 010 2H7a1 1 0 010-2z" />
+      </svg>
+      <span>{{ "demandes" | translate }}</span>
+    </a>
+    <a href="/municipalites" class="nav-item" title="{{ 'municipalites' | translate }}" id="municipalitesLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 2a10 10 0 00-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0012 2zm0 2a8 8 0 018 8c0 4.418-3.582 8-8 8s-8-3.582-8-8a8 8 0 018-8zm-4 6v4h8v-4H8z" />
+      </svg>
+      <span>{{ 'municipalites' | translate }}</span>
+    </a>
+    <a href="/users" class="nav-item" title="{{ 'utilisateurs' | translate }}" id="usersLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 8c0-2.761 2.239-5 5-5h4c2.761 0 5 2.239 5 5a1 1 0 01-1 1H6a1 1 0 01-1-1z" />
+      </svg>
+      <span>{{ "utilisateurs" | translate }}</span>
+    </a>
+    <a href="/login" class="nav-item" title="{{ 'deconnexion' | translate }}" id="logoutLink">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M9 3a1 1 0 00-1 1v4a1 1 0 102 0V5h8v14h-8v-3a1 1 0 10-2 0v4a1 1 0 001 1h10a1 1 0 001-1V4a1 1 0 00-1-1H9zm2.707 6.707a1 1 010-1.414-1.414-1.414L7.586 11H16a1 1 0 100-2H7.586l2.707-2.707z" />
+      </svg>
+      <span class="dec">{{ "deconnexion" | translate }}</span>
+    </a>
+  </nav>
+  <div class="custom-header">
+    <div class="lang-switch">
+      <button class="btn btn-lang" (click)="switchLanguage('fr')">
+        Français
+      </button>
+      <button class="btn btn-lang" (click)="switchLanguage('ar')">
+        عربية
+      </button>
+    </div>
+  </div>
+  <div></div>
+  <div class="search-container">
+    <i class="search-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M11 4a7 7 0 105.293 12.293l4.707 4.707a1 1 0 001.414-1.414l-4.707-4.707A7 7 0 0011 4zm0 2a5 5 0 110 10 5 5 0 010-10z" />
+      </svg>
+    </i>
+    <input
+      type="text"
+      class="search-input"
+      [placeholder]="'search_placeholder' | translate"
+      id="searchInput"
+      (input)="onUserSearchChange($event)"
+    />
+  </div>
+  <div *ngIf="isSuperAdmin && showForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-md p-6 w-96">
+      <h3 class="text-lg font-semibold mb-4">
+        {{ editingUserId ? ('edit_user' | translate) : ('add_user' | translate) }}
+      </h3>
+      <form
+        [formGroup]="userForm"
+        class="form-container"
+        (ngSubmit)="editingUserId ? saveUser() : handleAddUser()"
+      >
+        <div class="form-group mb-4">
+          <div class="input-container">
+            <input
+              type="text"
+              [placeholder]="'nom' | translate"
+              formControlName="nom"
+              class="input-field"
+              name="nom"
+            />
+          </div>
+          <div
+            *ngIf="userForm.get('nom')?.invalid && userForm.get('nom')?.touched"
+            class="error-message"
+          >
+            <div *ngIf="userForm.get('nom')?.hasError('required')">
+              {{ "err11" | translate }}
+            </div>
+          </div>
+
+          <div class="input-container">
+            <input
+              type="text"
+              [placeholder]="'prenom' | translate"
+              formControlName="prenom"
+              class="input-field"
+              name="prenom"
+            />
+          </div>
+          <div
+            *ngIf="userForm.get('prenom')?.invalid && userForm.get('prenom')?.touched"
+            class="error-message"
+          >
+            <div *ngIf="userForm.get('prenom')?.hasError('required')">
+              {{ "err11" | translate }}
+            </div>
+          </div>
+          <input
+            type="email"
+            [placeholder]="'email' | translate"
+            formControlName="email"
+            class="input-field"
+          />
+          <div
+            *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+            class="error-message"
+          >
+            <div *ngIf="userForm.get('email')?.hasError('required')">
+              {{ "err1" | translate }}
+            </div>
+            <div *ngIf="userForm.get('email')?.hasError('email')">
+              {{ "err2" | translate }}
+            </div>
+          </div>
+          <div class="input-container">
+            <input
+              type="password"
+              [placeholder]="'password' | translate"
+              formControlName="password"
+              class="input-field"
+              name="password"
+            />
+          </div>
+          <div
+            *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched"
+            class="error-message"
+          >
+            <div *ngIf="userForm.get('password')?.hasError('required')">
+              {{ "err3" | translate }}
+            </div>
+            <div *ngIf="userForm.get('password')?.hasError('minlength')">
+              {{ "err4" | translate }}
+            </div>
+          </div>
+          <div class="input-container">
+            <select formControlName="role" class="input-field">
+              <option value="" disabled selected>{{ 'choose_role' | translate }}</option>
+              <option value="super Admin">{{ 'super_admin' | translate }}</option>
+              <option value="admin">{{ 'admin' | translate }}</option>
+            </select>
+          </div>
+          <div
+            *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched"
+            class="error-message"
+          >
+            <div *ngIf="userForm.get('role')?.hasError('required')">
+              {{ "err11" | translate }}
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="tel"
+              formControlName="numero_telephone"
+              class="input-field"
+              maxlength="8"
+              [placeholder]="'numero' | translate"
+              name="numero_telephone"
+            />
+            <div
+              *ngIf="userForm.get('numero_telephone')?.invalid && userForm.get('numero_telephone')?.touched"
+              class="error-message"
+            >
+              <div *ngIf="userForm.get('numero_telephone')?.hasError('required')">
+                {{ "err11" | translate }}
+              </div>
+              <div *ngIf="userForm.get('numero_telephone')?.hasError('pattern')">
+                {{ "err15" | translate }}
+              </div>
+            </div>
+          </div>
+          <button
+            class="btn btn-add"
+            [disabled]="userForm.invalid"
+          >
+            {{ editingUserId ? ('edit' | translate) : ('add' | translate) }}
+          </button>
+          <button
+            type="button"
+            (click)="showForm = false"
+            class="btn btn-cancel ml-2"
+            (click)="cancelEdit()"
+          >
+            {{ 'cancel' | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-container">
+    <h1 class="titre">{{ 'utilisateurs' | translate }}</h1>
+    <button *ngIf="isSuperAdmin" (click)="showForm = true" class="btn btn-add mb-6">
+      + {{ 'add_user' | translate }}
+    </button>
+    <table mat-table>
+      <thead>
+        <tr>
+          <th>{{ "nom" | translate }}</th>
+          <th>{{ "prenom" | translate }}</th>
+          <th>{{ "email" | translate }}</th>
+          <th>{{ "role" | translate }}</th>
+          <th>{{ "numero" | translate }}</th>
+          <th *ngIf="isSuperAdmin">{{ "actions" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers">
+          <td>
+            <input *ngIf="editingUserId === user.id" [(ngModel)]="user.nom" />
+            <span *ngIf="editingUserId !== user.id">{{ user.nom }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingUserId === user.id" [(ngModel)]="user.prenom" />
+            <span *ngIf="editingUserId !== user.id">{{ user.prenom }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingUserId === user.id" [(ngModel)]="user.email" />
+            <span *ngIf="editingUserId !== user.id">{{ user.email }}</span>
+          </td>
+          <td>
+            <select *ngIf="editingUserId === user.id" [(ngModel)]="user.role">
+              <option value="super admin">{{ 'super_admin' | translate }}</option>
+              <option value="admin">{{ 'admin' | translate }}</option>
+            </select>
+            <span *ngIf="editingUserId !== user.id">{{ user.role }}</span>
+          </td>
+          <td>
+            <input *ngIf="editingUserId === user.id" [(ngModel)]="user.numero_telephone" />
+            <span *ngIf="editingUserId !== user.id">{{ user.numero_telephone }}</span>
+          </td>
+          <td *ngIf="isSuperAdmin">
+            <button *ngIf="editingUserId !== user.id" mat-icon-button (click)="editUser(user.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                <path d="m15 5 3 3" />
+              </svg>
+            </button>
+            <button *ngIf="editingUserId === user.id" mat-icon-button (click)="saveUser()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+            </button>
+            <button mat-icon-button style="color: red" color="warn" (click)="handleDeleteUser(user)">
+              <mat-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="red">
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                </svg>
+              </mat-icon>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredUsers.length === 0">
+          <td [attr.colspan]="isSuperAdmin ? 6 : 5" class="text-center"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

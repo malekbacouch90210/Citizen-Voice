@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="sidenav">
+      <img
+        src="assets/image/logonabeul.jpg"
+        width="50"
+        width="50"
+        alt="Logo"
+        class="logo"
+      />
+      <a
+        href="/dashboard"
+        class="nav-item"
+        title="{{ 'dashboard' | translate }}"
+        id="dashboardLink"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M3 3h8v8H3V3zm10 0h8v5h-8V3zM3 13h5v8H3v-8zm7 3h8v5h-8v-5z"
+          />
+        </svg>
+        <span>{{ "dashboard" | translate }}</span>
+      </a>
+      <a
+        href="/demandes"
+        class="nav-item"
+        title="{{ 'demandes' | translate }}"
+        id="demandesLink"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8.828a2 2 0 00-.586-1.414l-5.828-5.828A2 2 0 0012.172 2H6zm6 1.414L17.586 9H14a2 2 0 01-2-2V3.414zM7 11h10a1 1 0 010 2H7a1 1 0 110-2zm0 4h7a1 1 0 010 2H7a1 1 0 010-2z"
+          />
+        </svg>
+        <span>{{ "demandes" | translate }}</span>
+      </a>
+      <a href="/municipalites" class="nav-item" title="{{ 'municipalites' | translate }}" id="municipalitesLink">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+          <path d="M12 2a10 10 0 00-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0012 2zm0 2a8 8 0 018 8c0 4.418-3.582 8-8 8s-8-3.582-8-8a8 8 0 018-8zm-4 6v4h8v-4H8z" />
+        </svg>
+        <span>{{ 'municipalites' | translate }}</span>
+      </a>
+      <a
+        href="/users"
+        class="nav-item"
+        title="{{ 'utilisateurs' | translate }}"
+        id="usersLink"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M12 12a5 5 0 100-10 5 5 0 000 10zm-7 8c0-2.761 2.239-5 5-5h4c2.761 0 5 2.239 5 5a1 1 0 01-1 1H6a1 1 0 01-1-1z"
+          />
+        </svg>
+        <span>{{ "utilisateurs" | translate }}</span>
+      </a>
+      <a
+        href="/login"
+        class="nav-item"
+        title="{{ 'deconnexion' | translate }}"
+        id="logoutLink"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M9 3a1 1 0 00-1 1v4a1 1 0 102 0V5h8v14h-8v-3a1 1 0 10-2 0v4a1 1 0 001 1h10a1 1 0 001-1V4a1 1 0 00-1-1H9zm2.707 6.707a1 1 010-1.414-1.414-1.414L7.586 11H16a1 1 0 100-2H7.586l2.707-2.707z"
+          />
+        </svg>
+        <span class="dec">{{ "deconnexion" | translate }}</span>
+      </a>
+    </nav>
+    <div class="custom-header">
+      <div class="lang-switch">
+        <button class="btn btn-lang active" (click)="switchLanguage('fr')">
+          Français
+        </button>
+        <button class="btn btn-lang" (click)="switchLanguage('ar')">
+          عربية
+        </button>
+      </div>
+    </div>
+    <div class="header">
+      <button class="back-button" (click)="goBack()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="24"
+          height="24"
+        >
+          <path
+            d="M10.828 4.586a1 1 0 010 1.414L6.414 10H20a1 1 0 110 2H6.414l4.414 4.414a1 1 0 01-1.414 1.414l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 0z"
+          />
+        </svg>
+      </button>
+      <div class="search-container">
+        <i class="search-icon"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            width="24"
+            height="24"
+          >
+            <path
+              d="M11 4a7 7 0 105.293 12.293l4.707 4.707a1 1 0 001.414-1.414l-4.707-4.707A7 7 0 0011 4zm0 2a5 5 0 110 10 5 5 0 010-10z"
+            /></svg
+        ></i>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Rechercher..."
+          id="searchInput"
+          (input)="onSearchChange($event)"
+        />
+      </div>
+    </div>
+    <h1 class="titre">{{ "title" | translate }}</h1>
+    <div class="table-container">
+      <table mat-table>
+        <thead>
+          <tr>
+            <th>{{ "code de suivie" | translate }}</th>
+            <th>{{ "titre" | translate }}</th>
+            <th>{{ "description" | translate }}</th>
+            <th>{{ "municipalite" | translate }}</th>
+            <th>{{ "email" | translate }}</th>
+            <th>{{ "numero" | translate }}</th>
+            <th>{{ "statut" | translate }}</th>
+            <th>{{ "actions" | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let demande of filteredDemandes">
+            <td>{{ demande.key }}</td>
+            <td>{{ demande.titre }}</td>
+            <td>{{ demande.description }}</td>
+            <td>{{ demande.municipalite.name_francais }}</td>
+
+            <td>
+              <div>{{ demande.email }}</div>
+            </td>
+            <td>
+              <div>{{ demande.telephone }}</div>
+            </td>
+            <td>
+              <select
+                class="status-select"
+                [ngClass]="'status-' + demande.statut.replace(' ', '')"
+                [(ngModel)]="demande.statut"
+                (change)="openConfirmDialog(demande)"
+              >
+                <option value="traité" [selected]="demande.statut === 'traité'">
+                  {{ "traite" | translate }}
+                </option>
+                <option
+                  value="en cours"
+                  [selected]="demande.statut === 'en cours'"
+                >
+                  {{ "enCours" | translate }}
+                </option>
+                <option
+                  value="non traité"
+                  [selected]="demande.statut === 'non traité'"
+                >
+                  {{ "nonTraite" | translate }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <button
+                mat-icon-button
+                style="color: red"
+                color="warn"
+                (click)="onDeleteRequest(demande)"
+              >
+                <mat-icon
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="red"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                    />
+                  </svg>
+                </mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

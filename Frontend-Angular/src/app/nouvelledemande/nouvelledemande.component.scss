@@ -1,0 +1,250 @@
+.folder-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #ccc; 
+  border-radius: 7px;
+  padding: 8px;
+  background: white; 
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #E69557; 
+  }
+
+  // Hidden file input
+  .folder-input__file {
+    display: none;
+  }
+
+  // Text input styling
+  .folder-input__text {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: not-allowed;
+    border-radius: 8px;
+
+    &::placeholder {
+      color: #9ca3af; // Subtle placeholder color
+    }
+  }
+
+  // Button styling
+  .folder-input__button {
+    padding: 10px 18px;
+    background-color: #689D71; // Unique green color
+    color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #519a5d; // Darker green on hover
+    }
+  }
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.submit-btn:disabled {
+  background-color: #689D71;
+  cursor: not-allowed;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  
+}
+.form-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 30px auto;
+}
+.form-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #689D71;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #689D71;
+  margin-top: 23px;
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #000000;
+}
+.form-textarea {
+  resize: vertical;
+  height: 30px;
+  font-family: Arial, sans-serif;
+}
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+.radio-label {
+  font-size: 14px;
+  color: #555;
+}
+
+.submit-btn:hover {
+  background-color: #2db852;
+}
+$primary-color:#E69557;
+$hover-color: darken($primary-color, 10%);
+$icon-size: 20px;
+
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: orange;
+  outline: none; 
+}
+.custom-select-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.custom-select {
+  width: 93.5%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%23999999' d='M0 0l5 6 5-6H0z'/%3E%3C/svg%3E") no-repeat right 10px center;
+  background-size: 12px;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: rgb(96, 95, 95);
+}
+.custom-select:focus {
+  border-color: #E69557;
+  box-shadow: 0 0 5px #E69557;
+  outline: none;
+  color: #000000;
+}
+
+.custom-select:hover {
+  border-color: #e77f31;
+}
+
+.custom-select option {
+  padding: 10px;
+  color: #000000;
+}
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .submit-btn, 
+  .annuler-btn {
+    max-width: 100%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .submit-btn, 
+  .annuler-btn {
+    font-size: 14px; 
+    padding: 8px 16px;
+  }
+}
+.red-green{
+  display:ruby-base ;
+}
+.submit-btn, 
+.annuler-btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  flex-direction: row;
+  margin-left: 4px;
+  margin-bottom: 20px;
+  
+}
+
+.submit-btn {
+  background-color: #2db852;
+  color: #fff;
+}
+
+.submit-btn:hover {
+  background-color: #249a45;
+}
+
+.annuler-btn {
+  background-color: #c93844;
+  color: #fff;
+}
+
+.annuler-btn:hover {
+  background-color: #a52a37;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 15px; 
+  margin-top: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .submit-btn, 
+  .annuler-btn {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .submit-btn, 
+  .annuler-btn {
+    font-size: 14px; 
+    padding: 8px 16px;
+  }
+}
+.file-upload-input{
+  margin-bottom: 31px;
+}
+

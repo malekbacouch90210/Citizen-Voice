@@ -1,0 +1,19 @@
+<header *ngIf="showHeader" class="header" id="home">
+    <div class="header-content">
+      <div class="logo-container">
+        <a href="#main-content"></a>
+        <img src="assets/image/logonabeul.jpg" alt="Logo" class="logo"  />
+        <a><h1  routerLinkActive="router-link-active" class="logo-text">Voix Citoyen</h1></a>
+      </div>
+      <div class="header-buttons">
+        <div class="lang-selector">
+          <button class="lang-btn active" (click)="switchLanguage('fr')"data-lang="fr">français</button>
+          <button class="lang-btn" (click)="switchLanguage('ar')"data-lang="ar">العربية</button>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-primary" routerLink="/home" routerLinkActive="active">{{ 'btAcceuil' | translate }}</button>
+          <button class="btn btn-primary" routerLink="/login"routerLinkActive="active">{{ 'btconnexion' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </header>

@@ -1,0 +1,58 @@
+/* Fond du modal */
+::ng-deep .mat-dialog-container {
+    background-color: #ffffff; /* Fond blanc pour le contenu du modal */
+    border-radius: 8px; /* Bords arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  /* Titre du modal */
+  ::ng-deep .mat-dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 16px;
+  }
+  
+  /* Contenu du modal */
+  ::ng-deep .mat-dialog-content {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  
+  /* Boutons */
+  ::ng-deep .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
+  /* Bouton de confirmation */
+  ::ng-deep .mat-flat-button {
+    background-color: #4caf50; /* Vert */
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  ::ng-deep .mat-flat-button:hover {
+    background-color: #45a049; /* Couleur plus foncée au survol */
+  }
+  
+  /* Bouton d'annulation */
+  ::ng-deep .mat-button {
+    background-color: #f44336; /* Rouge */
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  ::ng-deep .mat-button:hover {
+    background-color: #e53935; /* Couleur plus foncée au survol */
+  }
+  

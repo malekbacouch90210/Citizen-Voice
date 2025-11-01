@@ -1,42 +1,69 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Compiled output
+# ---------------------------
+# 🔧 Compiled output
+# ---------------------------
 /dist
 /tmp
 /out-tsc
 /bazel-out
 
-# Node
+# ---------------------------
+# 🟢 Node & Angular
+# ---------------------------
 /node_modules
+/.angular
+/.angular/cache
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# ---------------------------
+# 🐍 Python / Django
+# ---------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+/media
+/staticfiles
+.env
+venv/
+.env/
+*.egg-info/
+db.sqlite3
 
-# Visual Studio Code
-.vscode/*
+# ---------------------------
+# 🧠 IDEs and editors
+# ---------------------------
+.idea/                 # PyCharm / JetBrains
+.vscode/*              # Visual Studio Code
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
+.c9/
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
 
-# Miscellaneous
-/.angular/cache
+# ---------------------------
+# 🧰 Miscellaneous
+# ---------------------------
 .sass-cache/
 /connect.lock
 /coverage
 /libpeerconnection.log
 testem.log
 /typings
+.history/*
 
-# System files
+# ---------------------------
+# 💻 System files
+# ---------------------------
 .DS_Store
 Thumbs.db

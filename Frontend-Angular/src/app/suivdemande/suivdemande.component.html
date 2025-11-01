@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demandes-table {
+        width: 80px;
+        height: 100px;
+        border-radius: 12px;
+        margin-top: 161px;
+        margin-left: -400px;
+        border-radius: 12px;
+      }
+      .demandes-table th,
+      .demandes-table td {
+        padding: 22px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      .demandes-table td {
+        font-size: 16px; /* Augmenter la taille de la police dans les cellules */
+      }
+      .demandes-table th {
+        background-color: #689d71;
+        color: white;
+      }
+      .demandes-table th:nth-child(1),
+      .demandes-table td:nth-child(1) {
+        width: 25%; /* Réserver 25% pour la colonne "Code Suivi" */
+      }
+
+      .demandes-table th:nth-child(2),
+      .demandes-table td:nth-child(2) {
+        width: 40%; /* Réserver 40% pour la colonne "Titre" */
+      }
+
+      .demandes-table th:nth-child(3),
+      .demandes-table td:nth-child(3) {
+        width: 35%; /* Réserver 35% pour la colonne "Statut" */
+      }
+
+      .demandes-table tr:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="trackModal" [class]="textDirection">
+      <div class="modal-content">
+        <br />
+        <form [formGroup]="trackingForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="form-label"
+              ><h2>{{ "smd" | translate }}</h2></label
+            >
+            <input
+              type="text"
+              id="key"
+              formControlName="key"
+              class="form-input"
+              [placeholder]="'Entrez votre code de suivi' | translate"
+            />
+            <div
+              *ngIf="
+                trackingForm.get('key')?.invalid &&
+                trackingForm.get('key')?.touched
+              "
+              class="error-message"
+            >
+              {{
+                "Veuillez entrer un code de suivi de 6 caracteres" | translate
+              }}
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="trackingForm.invalid"
+          >
+            {{ "rechercher" | translate }}
+          </button>
+        </form>
+        <div
+          *ngIf="message"
+          class="message"
+          [ngClass]="{ success: isSuccess, error: !isSuccess }"
+        ></div>
+      </div>
+      <div class="table" *ngIf="isSuccess && demandes && demandes.length > 0">
+        <table class="demandes-table">
+          <tr>
+            <th>{{ "Code Suivi" | translate }}</th>
+            <th>{{ "Titre" | translate }}</th>
+            <th>{{ "Statut" | translate }}</th>
+          </tr>
+
+          <tr *ngFor="let demande of demandes">
+            <td>{{ demande.key }}</td>
+            <td>{{ demande.titre }}</td>
+            <td>{{ demande.statut }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

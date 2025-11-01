@@ -1,0 +1,157 @@
+body {
+    font-family: 'Arial', sans-serif; 
+    min-height: 100vh;
+}
+.text-container {
+    direction: ltr;
+    text-align: left;
+  
+    &[dir='rtl'] {
+      direction: rtl;
+      text-align: right;
+    }
+}
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-top: -50px;
+}
+.hero-text {
+    padding-right: 50px;
+}
+.hero-text h2 {
+    font-size: 2.5rem;
+    color: #689D71;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold; /* Make the hero h2 bold */
+}
+.hero-text p {
+    color: #4b5563;;
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.hero-image {
+    text-align: center;
+}
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #689D71;
+}
+
+.stat-value {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #4b5563;
+    font-size: 1.125rem;
+}
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.action-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+.action-card h3 {
+    color: #689D71;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.action-card p {
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+.btn {
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    color: white;
+    background-color: #f19A5A;
+    margin-left: 180px;
+    &-primaryy {
+        background-color: #E69557;
+        color: white;
+
+        &:hover {
+            background-color: #f56b1b;
+            
+        }
+    }
+
+    i {
+        margin-left: 0.5rem;
+    }
+}
+.btn:hover{
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+    .btn {
+      width: 35%;
+      padding: 0.5rem 0.75rem;
+    }
+  
+    .hero-section {
+      grid-template-columns: 1fr;
+    }
+  
+    .hero-image {
+      order: -1;
+      margin-bottom: -1rem;
+      transform: scale(0.75);
+    }
+  
+    .action-cards {
+      grid-template-columns: 1fr;
+      margin-bottom: -1rem;
+    }
+}

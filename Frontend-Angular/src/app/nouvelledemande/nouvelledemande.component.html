@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ "btnouvelle" | translate }}</title>
+  </head>
+  <body>
+    <div id="nouvelledemande" class="form-container">
+      <h2 class="form-title">{{ "btnouvelle" | translate }}</h2>
+      <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label class="form-label">{{ "Nomcomplet" | translate }}</label>
+          <input
+            type="text"
+            formControlName="nom_complet"
+            class="form-input"
+            [placeholder]="'Votrenom' | translate"
+          />
+          <div
+            *ngIf="
+              requestForm.get('nom_complet')?.invalid &&
+              requestForm.get('nom_complet')?.touched
+            "
+            class="error-message"
+          >
+            {{ "err11" | translate }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ "Email" | translate }}</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-input"
+            [placeholder]="'votreemail' | translate"
+          />
+          <div
+            *ngIf="
+              requestForm.get('email')?.invalid &&
+              requestForm.get('email')?.touched
+            "
+            class="error-message"
+          >
+            <div *ngIf="requestForm.get('email')?.hasError('required')">
+              {{ "err1" | translate }}
+            </div>
+            <div *ngIf="requestForm.get('email')?.hasError('email')">
+              {{ "err2" | translate }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ "Téléphone" | translate }}</label>
+          <input
+            type="tel"
+            formControlName="telephone"
+            class="form-input"
+            maxlength="8"
+            [placeholder]="'Votrenumero' | translate"
+          />
+          <div
+            *ngIf="
+              requestForm.get('telephone')?.invalid &&
+              requestForm.get('telephone')?.touched
+            "
+            class="error-message"
+          >
+            <div *ngIf="requestForm.get('telephone')?.hasError('required')">
+              {{ "err11" | translate }}
+            </div>
+            <div *ngIf="requestForm.get('telephone')?.hasError('pattern')">
+              {{ "err15" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">{{ "adresse" | translate }}</label>
+          <input
+            type="text"
+            formControlName="adresse"
+            class="form-input"
+            [placeholder]="'adresse' | translate"
+          />
+          <div
+            *ngIf="
+              requestForm.get('adresse')?.invalid &&
+              requestForm.get('adresse')?.touched
+            "
+            class="error-message"
+          >
+            {{ "err11" | translate }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">{{ "Type de demande" | translate }}</label
+          ><br />
+          <div class="radio-group">
+            <label class="radio-label">
+              <input
+                type="radio"
+                formControlName="request_type"
+                value="Reclamation"
+              />
+              <span>{{ "Réclamation" | translate }}</span>
+            </label>
+            <label class="radio-label">
+              <input
+                type="radio"
+                formControlName="request_type"
+                value="Suggestion"
+              />
+              <span>{{ "Suggestion" | translate }}</span>
+            </label>
+          </div>
+          <div
+            *ngIf="
+              requestForm.get('request_type')?.invalid &&
+              requestForm.get('request_type')?.touched
+            "
+            class="error-message"
+          >
+            {{ "err11" | translate }}
+          </div>
+        </div>
+        <!-- Champ Municipalité -->
+        <label for="municipalite.name_francais" class="form-label">{{
+          "Municipalité" | translate
+        }}</label>
+        <select
+          formControlName="municipalite"
+          class="form-select custom-select"
+          id="municipalite"
+          required
+        >
+          <option
+            *ngFor="let municipalite of municipalites"
+            [value]="municipalite.name_francais"
+          >
+            {{ municipalite.name_francais }}
+          </option>
+        </select>
+
+        <div
+          *ngIf="
+            requestForm.get('municipalite')?.invalid &&
+            requestForm.get('municipalite')?.touched
+          "
+          class="error-message"
+        >
+          {{ "err11" | translate }}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ "Domaine" | translate }}</label>
+          <select formControlName="domaine" class="custom-select">
+            <option value="" disabled selected>
+              {{ "Sélectionnez votre Domaire" | translate }}
+            </option>
+            <option value="Infrastructure">{{ "s1" | translate }}</option>
+            <option value="Education">{{ "s4" | translate }}</option>
+            <option value="Santé">{{ "s5" | translate }}</option>
+            <option value="Autre">{{ "s6" | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              requestForm.get('domaine')?.invalid &&
+              requestForm.get('domaine')?.touched
+            "
+            class="error-message"
+          >
+            {{ "err11" | translate }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">{{ "titre2" | translate }}</label>
+          <input
+            type="text"
+            formControlName="titre"
+            class="form-input"
+            [placeholder]="'titre2' | translate"
+          />
+          <div
+            *ngIf="
+              requestForm.get('titre')?.invalid &&
+              requestForm.get('titre')?.touched
+            "
+            class="error-message"
+          >
+            {{ "err11" | translate }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">{{ "Description" | translate }}</label>
+          <textarea
+            formControlName="description"
+            class="form-textarea"
+            [placeholder]="'Description' | translate"
+          ></textarea>
+          <div
+            *ngIf="
+              requestForm.get('description')?.invalid &&
+              requestForm.get('description')?.touched
+            "
+            class="error-message"
+          >
+            {{ "err11" | translate }}
+          </div>
+        </div>
+        
+          
+        <div class="red-green">
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="requestForm.invalid"
+            style="
+              font-size: 16px;
+              padding: 10px 20px;
+              margin: 5px;
+              margin-left: 264px;
+            "
+          >
+            <i class="fas fa-check"></i>{{ "Soumettre" | translate }}
+          </button>
+          <div *ngIf="successMessage" class="success-message">
+          </div>
+          <div>
+            <button
+              type="reset"
+              class="annuler-btn"
+              (click)="resetForm()"
+              style="font-size: 16px"
+            >
+              X {{ "Annuler" | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

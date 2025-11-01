@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>{{ "connexion" | translate }}</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label class="form-label">{{ "Email" | translate }}</label>
+          <div class="input-group">
+            <span class="icon">&#9993;</span> 
+            <input type="email" formControlName="email" class="form-input" [placeholder]="'votreemail' | translate"  />
+          </div>
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+            <div *ngIf="loginForm.get('email')?.hasError('required')">{{"err1"|translate}}</div>
+            <div *ngIf="loginForm.get('email')?.hasError('email')">{{"err2"|translate}}</div>
+          </div>
+
+          <label class="form-label">{{ "mdp" | translate }}</label>
+          <div class="input-group">
+            <span class="icon"><i class="fas fa-lock"></i></span> 
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              id="password"
+              formControlName="password"
+              class="form-input"
+              [placeholder]="'votrepassword'| translate"
+            />
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+              <div *ngIf="loginForm.get('password')?.hasError('required')">{{"err3"|translate}}</div>
+              <div *ngIf="loginForm.get('password')?.hasError('minlength')">{{"err4"|translate}}</div>
+            </div>
+            <span class="toggle-password" (click)="togglePasswordVisibility()">
+              <i [class]="passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i> 
+            </span>
+          </div>
+          <button type="submit" class="submit-btn" (click)="onLogin()" [disabled]="loginForm.invalid">
+            {{ "connecter" | translate }}
+          </button>
+          <div *ngIf="errorMessage" class="error"></div>
+          <a routerLink="/mdpoublier" routerLinkActive="active" class="forgot-password">{{ "mot de passe oublie ?" | translate }}</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

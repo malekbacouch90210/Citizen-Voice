@@ -1,0 +1,98 @@
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submit-btn:disabled {
+  background-color: #E69557;
+  cursor: not-allowed;
+  
+}body {
+  background-color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.1); 
+}
+#trackModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin-top: -300px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #689D71;
+}
+.demandes-table {
+  width: 120%;
+  border-collapse: collapse;
+  margin-top: 92px;
+  margin-left: -400px;
+}
+.demandes-table th, .demandes-table td {
+  padding: 22px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.demandes-table td {
+  font-size: 16px; /* Augmenter la taille de la police dans les cellules */
+}
+.demandes-table th {
+  background-color: #689D71;
+  color: white;
+}
+
+.demandes-table tr:hover {
+  background-color: #f1f1f1;
+}
+.form-input {
+  width: 90%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #f06621;
+}
+
+.submit-btn {
+  background-color: #E69557;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #ef8753;
+}
